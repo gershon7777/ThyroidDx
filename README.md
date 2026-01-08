@@ -5,7 +5,6 @@ using clinical history and laboratory measurements. The project is based on a we
 disease dataset commonly used in data mining research.
 
 ---
-**Add `##` before these titles**:
 - Quickstart  
 - Dataset Description  
 - Methodology  
