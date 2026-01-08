@@ -5,6 +5,16 @@ using clinical history and laboratory measurements. The project is based on a we
 disease dataset commonly used in data mining research.
 
 ---
+**Add `##` before these titles**:
+- Quickstart  
+- Dataset Description  
+- Methodology  
+- Results and Model Comparison  
+- Conclusion  
+- Limitations  
+- Clinical Framing and Future Work  
+- Files in This Repository  
+---
  ## Quickstart
 
 **Google Colab**
