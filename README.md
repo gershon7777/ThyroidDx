@@ -36,6 +36,12 @@ has been loaded correctly.
 The dataset used in this project originates from the **UCI Thyroid Disease dataset**, a benchmark
 dataset designed for evaluating classification algorithms in medical decision-making.
 
+The data consists of demographic information, hormone measurements (TSH, T3, TT4, T4U, FTI),
+medication status, medical history, and clinician-assigned diagnostic labels. Missing values are
+present in several laboratory features and are handled during preprocessing.
+
+
+
 ### General Characteristics
 
 | Property | Description |
@@ -137,6 +143,19 @@ classification experiments in this project.
 
 ## Methodology
 
+Data preprocessing included handling missing values, feature selection, and train–test splitting.
+Several supervised learning models were trained and evaluated to compare predictive performance and
+interpretability.
+
+The following models were implemented:
+
+- Dummy Classifier (baseline)
+- Logistic Regression
+- Decision Tree (CART)
+- Random Forest
+
+---
+  
 ### Data Preprocessing
 - Removal of records with excessive missing values
 - Handling of remaining missing values using standard preprocessing techniques
@@ -161,7 +180,7 @@ complexity and clinical interpretability.
 | Random Forest        | Ensemble     | Multiple trees, improved generalization                |
 
 
-**Model Comparison (Qualitative)**
+**Model Comparison**
 
 | Model               | Performance  | Strengths                             | Limitations                 |
 | ------------------- | ------------ | ------------------------------------- | --------------------------- |
@@ -170,39 +189,17 @@ complexity and clinical interpretability.
 | Decision Tree       | Good         | High interpretability, clinical logic | Prone to overfitting        |
 | Random Forest       | Best overall | Higher accuracy, robust predictions   | Reduced interpretability    |
 
-The Dummy Classifier served as a minimal baseline, confirming that meaningful learning was
-achieved by all subsequent models.
-Logistic Regression improved performance over baseline but showed limitations in handling
-complex, non-linear relationships common in endocrine data.
-The Decision Tree classifier achieved strong performance while maintaining interpretability,
-making it particularly suitable for clinical reasoning and educational purposes.
-The Random Forest model demonstrated the best overall predictive performance, benefiting from
-ensemble learning and reduced variance, at the cost of reduced transparency.
+The Dummy Classifier served as a minimal baseline and performed poorly, confirming that meaningful learning is required.
 
+Logistic Regression improved over baseline but remained limited by its linear decision boundary, which is often insufficient for complex endocrine relationships and interactions between clinical features.
 
-Across all models:
+The Decision Tree (CART) model provided strong performance while remaining interpretable. Its rule-based structure is useful for clinical-style reasoning, but single trees can be sensitive to noise and may overfit, especially when classes overlap or when missingness is not uniform across features.
 
-Performance improved consistently from baseline to ensemble methods
+The Random Forest model achieved the best overall predictive performance. This is expected because a Random Forest combines many decision trees (an ensemble) and aggregates their predictions. Compared to a single CART tree, the ensemble reduces variance and improves generalization, particularly in noisy clinical datasets. The trade-off is reduced interpretability, since the final prediction is produced by many trees rather than a single transparent rule set.
 
-Tree-based models outperformed linear models
-
-Misclassifications were most common among clinically overlapping diagnoses
-
-Observed errors reflected real-world diagnostic ambiguity rather than model failure
-
-Confusion matrices and classification reports in the notebooks illustrate class-wise behavior and
-highlight areas of diagnostic overlap.
-
-We trained and evaluated multiple supervised classifiers to compare performance and interpretability.
-A Dummy Classifier was used as a baseline and performed poorly, confirming that real learning is required.
-Logistic Regression improved over baseline but was limited by linear decision boundaries.
-Decision Trees provided strong performance with high interpretability, matching clinical-style rule logic but showing some sensitivity to overfitting.
-Random Forest achieved the best overall predictive performance by reducing variance through ensembling, at the cost of reduced explainability.
-
+Misclassifications occurred primarily among clinically overlapping diagnostic categories, reflecting real-world diagnostic ambiguity rather than purely algorithmic error.
 
 ---
-
-
 
 ## Conclusion
 
@@ -220,15 +217,25 @@ medical AI applications.
 
 ## Limitations
 
-Class imbalance across diagnostic categories
+Class imbalance is present across diagnostic categories. However, this imbalance is not necessarily a flaw: in real-world medicine, most people are not hyperthyroid or hypothyroid, so a dataset where “healthy / non-disease” patterns are more common can reflect realistic population prevalence. In that sense, the dataset provides a useful approximation of real clinical distribution.
 
-Missing laboratory values in a subset of records
+At the same time, imbalance can still affect model behavior and evaluation. Models may learn to prioritize majority classes, and minority classes may show reduced recall. For this reason, performance should be interpreted with attention to class-wise metrics and confusion matrices, not accuracy alone.
 
-No external validation dataset
+Additional limitations include missing laboratory values in a subset of records, retrospective design, and lack of external validation. The models in this repository are for educational and research portfolio purposes and are not intended for clinical deployment.
 
-Retrospective data only
 
-Models not intended for clinical deployment
+---
+
+## Clinical Framing and Future Work
+
+Clinical practice does not rely only on a final diagnosis label. It uses structured reasoning: symptoms, risk factors, pre-test probability, and guideline-driven follow-up testing. In the notebook, we also explored a clinically oriented framing inspired by decision-support resources (e.g., AMBOSS-style logic), with the goal of moving beyond pure pattern recognition toward guideline-compatible reasoning.
+
+A future extension of this project is to combine supervised learning with clinical guideline logic, for example:
+- integrating structured rules or decision pathways alongside ML predictions,
+- improving interpretability by mapping model signals to clinically meaningful thresholds,
+- and evaluating whether guideline-aware modeling reduces unsafe or clinically implausible predictions.
+
+We also introduced a “pre-lab risk score” concept, where a simplified model would estimate risk using pre-laboratory information (history and clinical context) before confirmatory hormone testing. This mirrors real clinical workflow: early triage and probability estimation before ordering definitive tests. A future version of the notebook can implement this as a separate model trained on pre-lab features only and compare its performance to full-lab models.
 
 ---
 
