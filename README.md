@@ -5,20 +5,22 @@ using clinical history and laboratory measurements. The project is based on a we
 disease dataset commonly used in data mining research.
 
 ---
-## Loading .csv file
+## ## Quickstart
 
-Loading the Dataset in Google Colab
-When running this notebook in Google Colab, the dataset must be uploaded manually using the
+**Google Colab**
+1. Open `ThyroidDx.ipynb` in Colab
+2. Run the dataset upload cell and upload `thyroid0387.csv`
+3. Run all cells top to bottom
+4. Loading the Dataset in Google Colab When running this notebook in Google Colab, the dataset must be uploaded manually using the
 Colab file upload widget.
 
 The following code cell is responsible for loading the dataset:
 
-"from google.colab import files
-uploaded = files.upload()
-file_name = list(uploaded.keys())[0]
-df = pd.read_csv(file_name)"
-
-Run the cell. --> Click “Choose Files” when prompted. --> Upload the dataset file:thyroid0387.csv
+    "from google.colab import files uploaded = files.upload() 
+    file_name = list(uploaded.keys())[0] 
+    df = pd.read_csv(file_name)"
+    
+5. Run the cell. --> Click “Choose Files” when prompted. --> Upload the dataset file:thyroid0387.csv
 Done, all the code should run. 
 
 Once uploaded, the file is saved in the Colab session and automatically loaded into a pandas
@@ -177,6 +179,7 @@ making it particularly suitable for clinical reasoning and educational purposes.
 The Random Forest model demonstrated the best overall predictive performance, benefiting from
 ensemble learning and reduced variance, at the cost of reduced transparency.
 
+
 Across all models:
 
 Performance improved consistently from baseline to ensemble methods
@@ -190,7 +193,16 @@ Observed errors reflected real-world diagnostic ambiguity rather than model fail
 Confusion matrices and classification reports in the notebooks illustrate class-wise behavior and
 highlight areas of diagnostic overlap.
 
+We trained and evaluated multiple supervised classifiers to compare performance and interpretability.
+A Dummy Classifier was used as a baseline and performed poorly, confirming that real learning is required.
+Logistic Regression improved over baseline but was limited by linear decision boundaries.
+Decision Trees provided strong performance with high interpretability, matching clinical-style rule logic but showing some sensitivity to overfitting.
+Random Forest achieved the best overall predictive performance by reducing variance through ensembling, at the cost of reduced explainability.
+
+
 ---
+
+
 
 ## Conclusion
 
@@ -221,7 +233,9 @@ Models not intended for clinical deployment
 ---
 
 ## Files in This Repository
-- File	Description
+  File	Description
 - ThyroidDx.ipynb	Main analysis notebook containing preprocessing, modeling, and evaluation
-= thyroid0387.csv	Thyroid disease dataset
-= README.md	Project documentation
+  
+- thyroid0387.csv	Thyroid disease dataset
+  
+- README.md	Project documentation
