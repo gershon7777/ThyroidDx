@@ -5,7 +5,7 @@ using clinical history and laboratory measurements. The project is based on a we
 disease dataset commonly used in data mining research.
 
 ---
-## How To Run
+## Loading .csv file
 
 Loading the Dataset in Google Colab
 When running this notebook in Google Colab, the dataset must be uploaded manually using the
