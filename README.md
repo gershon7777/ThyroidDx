@@ -5,6 +5,29 @@ using clinical history and laboratory measurements. The project is based on a we
 disease dataset commonly used in data mining research.
 
 ---
+## How To Run
+
+Loading the Dataset in Google Colab
+When running this notebook in Google Colab, the dataset must be uploaded manually using the
+Colab file upload widget.
+
+The following code cell is responsible for loading the dataset:
+
+"from google.colab import files
+uploaded = files.upload()
+file_name = list(uploaded.keys())[0]
+df = pd.read_csv(file_name)"
+
+Run the cell. --> Click “Choose Files” when prompted. --> Upload the dataset file:thyroid0387.csv
+Done, all the code should run. 
+
+Once uploaded, the file is saved in the Colab session and automatically loaded into a pandas
+DataFrame.
+
+After successful upload, the notebook will display a confirmation message indicating that the file
+has been loaded correctly.
+
+---
 
 ## Dataset Description
 
