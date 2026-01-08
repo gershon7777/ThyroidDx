@@ -5,7 +5,7 @@ using clinical history and laboratory measurements. The project is based on a we
 disease dataset commonly used in data mining research.
 
 ---
-## ## Quickstart
+ ## Quickstart
 
 **Google Colab**
 1. Open `ThyroidDx.ipynb` in Colab
